@@ -13,7 +13,13 @@ func customPrint(_ string: String) {
   
 }
 
-let store = Store()
+class AppState {
+  var store = Store()
+  static let shared = AppState()
+}
+
+let mvViewFactory = MVViewFactory(store: AppState.shared.store)
+
 @main
 struct TestApp: App {
   
@@ -25,17 +31,18 @@ struct TestApp: App {
     case sharedMVVM
   }
   
-  @State var method: Method = .viewContext
+  @State var method: Method = .mvvm
   
   @State var addCount = 50
   var body: some Scene {
     WindowGroup {
       VStack {
         switch method {
-        case .sharedMVVM: SMGarageView().environmentObject(SMViewModel(store: store))
-        case .viewFactory: ViewFactoryMethod()
-        case .mvvm: MVVMGarageView(viewModel: MVVMGarageView.ViewModel(store: store))
-        case .viewAndModel: GarageView(garage: Binding<Garage>(get: { store.garage }, set: { store.garage = $0 }))
+        case .sharedMVVM: SMGarageView().environmentObject(SMViewModel(store: AppState.shared.store))
+        case .viewFactory: ViewFactoryMethodView()
+        case .mvvm: mvViewFactory.garageView()
+//          MVVMGarageView(viewModel: MVVMGarageView.ViewModel(store: store))
+        case .viewAndModel: GarageView(garage: Binding<Garage>(get: { AppState.shared.store.garage }, set: { AppState.shared.store.garage = $0 }))
         case .viewContext: getVCGarageView()
         }
         
@@ -45,7 +52,7 @@ struct TestApp: App {
             .map { _ in
               Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD"))
             }
-          store.garage.cars.append(contentsOf: new)
+          AppState.shared.store.garage.cars.append(contentsOf: new)
           addCount *= 2
         }) { Text("Add \(addCount) Trucks")}.padding()
         
@@ -59,7 +66,7 @@ struct TestApp: App {
   
   func getVCGarageView() -> some View {
     let viewContext = VCGarageView.ViewContext()
-    viewContext.viewModel = VCGarageViewModel(store: store)
+    viewContext.viewModel = VCGarageViewModel(store: AppState.shared.store)
     let view = VCGarageView(viewContext: viewContext)
     return view
   }
@@ -73,13 +80,4 @@ struct TestApp: App {
   }
 }
 
-struct ViewFactoryMethod: View {
-  @StateObject var viewFactory = ViewFactory()
-  
-  var body: some View {
-    VStack {
-      viewFactory.garage(garage: Binding<Garage>(get: { store.garage }, set: { store.garage = $0}))
-    }.environmentObject(viewFactory)
-  }
-}
 

@@ -15,11 +15,20 @@
 		52FCA59E24CFF2780002E41C /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA59D24CFF2780002E41C /* Models.swift */; };
 		52FCA5A124CFF3300002E41C /* GarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA5A024CFF3300002E41C /* GarageView.swift */; };
 		52FCA5A324CFFCC40002E41C /* IndexedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA5A224CFFCC40002E41C /* IndexedCollection.swift */; };
-		52FCA5A524CFFD360002E41C /* GarageViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA5A424CFFD360002E41C /* GarageViewModels.swift */; };
+		52FCA5A524CFFD360002E41C /* MVGarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA5A424CFFD360002E41C /* MVGarageViewModel.swift */; };
 		52FCA5A724D001B00002E41C /* GarageViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FCA5A624D001B00002E41C /* GarageViewFactory.swift */; };
 		F83A235724D1AAC4002A5966 /* VCGarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A235624D1AAC4002A5966 /* VCGarageView.swift */; };
 		F83A235924D1AAD7002A5966 /* VCCarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A235824D1AAD7002A5966 /* VCCarView.swift */; };
 		F83A235B24D1AADD002A5966 /* VCEngineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A235A24D1AADD002A5966 /* VCEngineView.swift */; };
+		F83A235E24D1FD26002A5966 /* MVViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A235D24D1FD26002A5966 /* MVViewFactory.swift */; };
+		F83A236024D1FE69002A5966 /* VCGarageViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A235F24D1FE69002A5966 /* VCGarageViewContext.swift */; };
+		F83A236224D1FEA0002A5966 /* VCGarageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A236124D1FEA0002A5966 /* VCGarageViewModel.swift */; };
+		F83A236424D1FEC1002A5966 /* VCCarViewContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A236324D1FEC1002A5966 /* VCCarViewContext.swift */; };
+		F83A236624D1FEEF002A5966 /* VCCarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A236524D1FEEF002A5966 /* VCCarViewModel.swift */; };
+		F83A236C24D2032D002A5966 /* MVGarageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A236B24D2032D002A5966 /* MVGarageView.swift */; };
+		F83A237424D20AED002A5966 /* ViewFactoryMethodView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A237324D20AED002A5966 /* ViewFactoryMethodView.swift */; };
+		F83A237624D20FCA002A5966 /* MVCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A237524D20FCA002A5966 /* MVCardView.swift */; };
+		F83A237824D2106A002A5966 /* MVCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F83A237724D2106A002A5966 /* MVCardViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,11 +42,20 @@
 		52FCA59D24CFF2780002E41C /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
 		52FCA5A024CFF3300002E41C /* GarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageView.swift; sourceTree = "<group>"; };
 		52FCA5A224CFFCC40002E41C /* IndexedCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IndexedCollection.swift; sourceTree = "<group>"; };
-		52FCA5A424CFFD360002E41C /* GarageViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageViewModels.swift; sourceTree = "<group>"; };
+		52FCA5A424CFFD360002E41C /* MVGarageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVGarageViewModel.swift; sourceTree = "<group>"; };
 		52FCA5A624D001B00002E41C /* GarageViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GarageViewFactory.swift; sourceTree = "<group>"; };
 		F83A235624D1AAC4002A5966 /* VCGarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCGarageView.swift; sourceTree = "<group>"; };
 		F83A235824D1AAD7002A5966 /* VCCarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarView.swift; sourceTree = "<group>"; };
 		F83A235A24D1AADD002A5966 /* VCEngineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCEngineView.swift; sourceTree = "<group>"; };
+		F83A235D24D1FD26002A5966 /* MVViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVViewFactory.swift; sourceTree = "<group>"; };
+		F83A235F24D1FE69002A5966 /* VCGarageViewContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCGarageViewContext.swift; sourceTree = "<group>"; };
+		F83A236124D1FEA0002A5966 /* VCGarageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCGarageViewModel.swift; sourceTree = "<group>"; };
+		F83A236324D1FEC1002A5966 /* VCCarViewContext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarViewContext.swift; sourceTree = "<group>"; };
+		F83A236524D1FEEF002A5966 /* VCCarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCCarViewModel.swift; sourceTree = "<group>"; };
+		F83A236B24D2032D002A5966 /* MVGarageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVGarageView.swift; sourceTree = "<group>"; };
+		F83A237324D20AED002A5966 /* ViewFactoryMethodView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewFactoryMethodView.swift; sourceTree = "<group>"; };
+		F83A237524D20FCA002A5966 /* MVCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCardView.swift; sourceTree = "<group>"; };
+		F83A237724D2106A002A5966 /* MVCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MVCardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,7 +80,11 @@
 		527A5B7724D0332200FA0817 /* MVVM */ = {
 			isa = PBXGroup;
 			children = (
-				52FCA5A424CFFD360002E41C /* GarageViewModels.swift */,
+				F83A235D24D1FD26002A5966 /* MVViewFactory.swift */,
+				F83A236B24D2032D002A5966 /* MVGarageView.swift */,
+				52FCA5A424CFFD360002E41C /* MVGarageViewModel.swift */,
+				F83A237524D20FCA002A5966 /* MVCardView.swift */,
+				F83A237724D2106A002A5966 /* MVCardViewModel.swift */,
 			);
 			path = MVVM;
 			sourceTree = "<group>";
@@ -71,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				52FCA5A624D001B00002E41C /* GarageViewFactory.swift */,
+				F83A237324D20AED002A5966 /* ViewFactoryMethodView.swift */,
 			);
 			path = ViewFactory;
 			sourceTree = "<group>";
@@ -138,7 +161,11 @@
 			isa = PBXGroup;
 			children = (
 				F83A235624D1AAC4002A5966 /* VCGarageView.swift */,
+				F83A235F24D1FE69002A5966 /* VCGarageViewContext.swift */,
+				F83A236124D1FEA0002A5966 /* VCGarageViewModel.swift */,
 				F83A235824D1AAD7002A5966 /* VCCarView.swift */,
+				F83A236324D1FEC1002A5966 /* VCCarViewContext.swift */,
+				F83A236524D1FEEF002A5966 /* VCCarViewModel.swift */,
 				F83A235A24D1AADD002A5966 /* VCEngineView.swift */,
 			);
 			path = ViewContext;
@@ -212,17 +239,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F83A236424D1FEC1002A5966 /* VCCarViewContext.swift in Sources */,
 				F83A235724D1AAC4002A5966 /* VCGarageView.swift in Sources */,
 				52EB731924D1325000ECC805 /* SMViewModel.swift in Sources */,
 				52FCA5A324CFFCC40002E41C /* IndexedCollection.swift in Sources */,
+				F83A236624D1FEEF002A5966 /* VCCarViewModel.swift in Sources */,
 				52FCA5A124CFF3300002E41C /* GarageView.swift in Sources */,
+				F83A236024D1FE69002A5966 /* VCGarageViewContext.swift in Sources */,
+				F83A237824D2106A002A5966 /* MVCardViewModel.swift in Sources */,
 				52999A5A24D1972200110808 /* TestApp.swift in Sources */,
 				524C5FFA24D195C0008739C4 /* Store.swift in Sources */,
 				52FCA59E24CFF2780002E41C /* Models.swift in Sources */,
 				F83A235924D1AAD7002A5966 /* VCCarView.swift in Sources */,
+				F83A236224D1FEA0002A5966 /* VCGarageViewModel.swift in Sources */,
 				52FCA5A724D001B00002E41C /* GarageViewFactory.swift in Sources */,
+				F83A235E24D1FD26002A5966 /* MVViewFactory.swift in Sources */,
 				52EB731424D12B8000ECC805 /* SMViews.swift in Sources */,
-				52FCA5A524CFFD360002E41C /* GarageViewModels.swift in Sources */,
+				F83A237624D20FCA002A5966 /* MVCardView.swift in Sources */,
+				F83A237424D20AED002A5966 /* ViewFactoryMethodView.swift in Sources */,
+				52FCA5A524CFFD360002E41C /* MVGarageViewModel.swift in Sources */,
+				F83A236C24D2032D002A5966 /* MVGarageView.swift in Sources */,
 				F83A235B24D1AADD002A5966 /* VCEngineView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
