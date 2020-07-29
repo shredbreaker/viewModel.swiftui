@@ -36,7 +36,7 @@ struct TestApp: App {
                 Button(action:{
                     let new = [Car](repeating: Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD")), count: 20)
                     store.garage.cars.append(contentsOf: new)
-                }) { Text("Add 1000 Trucks")}.padding()
+                }) { Text("Add 20 Trucks")}.padding()
 
                 Button(action:{
                     self.nextMethod()
