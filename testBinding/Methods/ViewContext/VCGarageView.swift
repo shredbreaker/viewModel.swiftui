@@ -104,27 +104,17 @@ class VCGarageViewModel: VCGarageViewModelProtocol {
     guard let store = store else { return }
     
     store.$garage
-      .receive(on: DispatchQueue.global(qos: .background))
+      .receive(on: RunLoop.main)
       .sink { [weak self] garage in
-        guard let self = self else { return }
+        guard let vc = self?.viewContext else { return }
+
+        vc.cars = garage.cars.map({ $0.id })
+        vc.titles = garage.titles.joined(separator: ", ")
+        vc.colors = garage.colors.joined(separator: ", ")
+        vc.engineCCs = garage.engineCCs.joined(separator: ", ")
+        vc.engineModels = garage.engineModels.joined(separator: ", ")
+        vc.numberOfCars = String("\(garage.cars.count)")
         
-        let cars = garage.cars.map({ $0.id })
-        let titles = garage.titles.joined(separator: ", ")
-        let colors = garage.colors.joined(separator: ", ")
-        let engineCCs = garage.engineCCs.joined(separator: ", ")
-        let engineModels = garage.engineModels.joined(separator: ", ")
-        let numberOfCars = String("\(garage.cars.count)")
-        
-        DispatchQueue.main.async {
-          guard let vc = self.viewContext else { return }
-          vc.cars = cars
-          vc.titles = titles
-          vc.colors = colors
-          vc.engineCCs = engineCCs
-          vc.engineModels = engineModels
-          vc.numberOfCars = numberOfCars
-          print(vc.numberOfCars)
-        }
       }.store(in: &subs)
   }
 }
