@@ -34,7 +34,10 @@ struct TestApp: App {
                 
                     
                 Button(action:{
-                    let new = [Car](repeating: Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD")), count: 20)
+                    let new = [Any](repeating:"0", count: 20)
+                        .map { _ in
+                            Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD"))
+                        }
                     store.garage.cars.append(contentsOf: new)
                 }) { Text("Add 20 Trucks")}.padding()
 
