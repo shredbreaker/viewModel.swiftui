@@ -23,6 +23,7 @@ struct TestApp: App {
   
   @State var method: Method = .viewContext
   
+  @State var addCount = 50
   var body: some Scene {
     WindowGroup {
       VStack {
@@ -36,12 +37,13 @@ struct TestApp: App {
         
         
         Button(action:{
-          let new = [Any](repeating:"0", count: 20)
+          let new = [Any](repeating:"0", count: addCount)
             .map { _ in
               Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD"))
             }
           store.garage.cars.append(contentsOf: new)
-        }) { Text("Add 20 Trucks")}.padding()
+          addCount *= 2
+        }) { Text("Add \(addCount) Trucks")}.padding()
         
         Button(action:{
           self.nextMethod()

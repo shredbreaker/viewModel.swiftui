@@ -79,25 +79,32 @@ class VCCarViewModel: VCCarViewModelProtocol {
     subs.removeAll()
     guard let store = store else { return }
     
+    
+    update()
+    
     store.$garage
+      .removeDuplicates()
       .receive(on: RunLoop.main)
-      .sink { [weak self] garage in
-        guard let self = self, let store = self.store, let viewContext = self.viewContext, let index = garage.carIndex(id: self.carId) else { return }
+      .sink { [weak self] _ in
+        self?.update()
         
-        viewContext.objectWillChange.send()
-
-        viewContext.title = Binding<String>(
-          get: { store.garage.cars[index].title },
-          set: { store.garage.cars[index].title = $0 }
-        )
-
-        viewContext.color = Binding<String>(
-          get: { store.garage.cars[index].color },
-          set: { store.garage.cars[index].color = $0 }
-        )
-
-        
-
       }.store(in: &subs)
+  }
+  
+  func update() {
+    guard let store = self.store, let viewContext = self.viewContext, let index = store.garage.carIndex(id: self.carId) else { return }
+    
+    viewContext.objectWillChange.send()
+    
+    viewContext.title = Binding<String>(
+      get: { store.garage.cars[index].title },
+      set: { store.garage.cars[index].title = $0 }
+    )
+    
+    viewContext.color = Binding<String>(
+      get: { store.garage.cars[index].color },
+      set: { store.garage.cars[index].color = $0 }
+    )
+
   }
 }
