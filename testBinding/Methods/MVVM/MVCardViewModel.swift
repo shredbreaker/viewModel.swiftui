@@ -14,28 +14,29 @@ extension MVCardView {
     private var store: Store
     private var carId: UUID
     
-    var title: Binding<String> = Binding<String>(get: {""}, set: { _ in })
-    var color: Binding<String> = Binding<String>(get: {""}, set: { _ in })
+    var title: Binding<String>
+    var color: Binding<String>
     
     init(carId: UUID, store: Store) {
       self.store = store
       self.carId = carId
+
+      let index = self.store.garage.carIndex(id: carId)!
+      self.title = Binding<String>(
+        get: { store.garage.cars[index].title },
+        set: { store.garage.cars[index].title = $0 }
+      )
+      
+      self.color = Binding<String>(
+        get: { store.garage.cars[index].color },
+        set: { store.garage.cars[index].color = $0 }
+      )
       
       store.$garage
         .removeDuplicates()
         .receive(on: RunLoop.main)
-        .sink { [weak self] garage in
-          guard let self = self, let index = self.store.garage.carIndex(id: carId) else { return }
-          self.objectWillChange.send()
-          self.title = Binding<String>(
-            get: { store.garage.cars[index].title },
-            set: { store.garage.cars[index].title = $0 }
-          )
-          
-          self.color = Binding<String>(
-            get: { store.garage.cars[index].color },
-            set: { store.garage.cars[index].color = $0 }
-          )
+        .sink { [weak self] _ in
+          self?.objectWillChange.send()
         }.store(in: &subs)
 
     }

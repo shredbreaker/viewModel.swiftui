@@ -11,25 +11,27 @@ import Combine
 
 extension MVGarageView {
   class ViewModel: ObservableObject {
-    @Published var cars: [UUID] = []
-    @Published var titles: String = ""
-    @Published var colors: String = ""
-    @Published var engineCCs: String = ""
-    @Published var engineModels: String = ""
-    @Published var numberOfCars: String = ""
-
+    var cars: [UUID] = []
+    var titles: String = ""
+    var colors: String = ""
+    var engineCCs: String = ""
+    var engineModels: String = ""
+    var numberOfCars: String = ""
+    
     private var subs = Set<AnyCancellable>()
     private var store: Store
     
     init(store: Store) {
       self.store = store
-
+      
+      setup(garage: store.garage)
+      
       store.$garage
         .removeDuplicates()
         .receive(on: RunLoop.main)
         .sink { [weak self] garage in
           self?.setup(garage: garage)
-        }.store(in: &subs)      
+        }.store(in: &subs)
     }
     
     func setup(garage: Garage) {
@@ -44,5 +46,6 @@ extension MVGarageView {
     
   }
 }
+
 
 

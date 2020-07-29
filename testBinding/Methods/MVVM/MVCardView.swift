@@ -16,7 +16,7 @@ extension MVViewFactory {
 
 struct MVCardView: View {
   @ObservedObject var viewModel: ViewModel
-  @EnvironmentObject var viewFactory: MVViewFactory
+//  @EnvironmentObject var viewFactory: MVViewFactory
 
   var body: some View {
     VStack {
