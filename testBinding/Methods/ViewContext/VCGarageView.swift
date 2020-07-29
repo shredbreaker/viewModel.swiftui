@@ -13,16 +13,6 @@ struct VCGarageView: View {
   var body: some View {
     VStack {
       
-      ScrollView {
-        LazyVStack(alignment: .leading) {
-          ForEach(viewContext.cars) {
-            viewContext.carView($0)
-          }
-        }.padding(/*@START_MENU_TOKEN@*/.all/*@END_MENU_TOKEN@*/, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-      }
-      Spacer()
-      
-      
       VStack(alignment: .leading) {
         Text("Update id: \(increasedId())")
         Text("Cars: \(viewContext.numberOfCars)")
@@ -32,9 +22,20 @@ struct VCGarageView: View {
         Text("Models: \(viewContext.engineModels)")
         Button(action:{
         }) { Text("Add car")}
+        
+      ScrollView {
+        LazyVStack(alignment: .leading) {
+          ForEach(viewContext.cars) {
+            viewContext.carView($0)
+          }
+        }.padding(.all, 10)
+      }
+      
+      
+
       }.padding().font(.footnote)
     }.onAppear() {
-      print("SMGarageView Appeared")
+      customPrint("SMGarageView Appeared")
     }
   }
 }
@@ -49,7 +50,7 @@ extension VCGarageView {
     
     @Published var cars: [UUID] = [] {
       didSet {
-        print("!")
+        customPrint("!")
       }
     }
     
@@ -59,7 +60,7 @@ extension VCGarageView {
     @Published var engineModels: String = ""
     @Published var numberOfCars: String = "" {
       didSet {
-        print("set: \(numberOfCars)")
+        customPrint("set: \(numberOfCars)")
       }
     }
     
@@ -71,11 +72,11 @@ extension VCGarageView {
     }
     
     init() {
-      print("VCGarageView.ViewContext init")
+      customPrint("VCGarageView.ViewContext init")
     }
     
     deinit {
-      print("VCGarageView.ViewContext deinit")
+      customPrint("VCGarageView.ViewContext deinit")
     }
   }
 }
@@ -95,13 +96,13 @@ class VCGarageViewModel: VCGarageViewModelProtocol {
   }
   
   deinit {
-    print("VCGarageViewModel deinit")
+    customPrint("VCGarageViewModel deinit")
   }
   
   var subs = Set<AnyCancellable>()
   init(store: Store) {
     self.store = store
-    print("VCGarageViewModel init")
+    customPrint("VCGarageViewModel init")
   }
   
   func setup() {
@@ -119,9 +120,9 @@ class VCGarageViewModel: VCGarageViewModelProtocol {
   }
   
   func update() {
-    guard let garage = store?.garage else { return }
+    guard let garage = store?.garage, let vc = viewContext else { return }
     
-    DispatchQueue.global(qos: .background).async {
+//    DispatchQueue.global(qos: .background).async {
       let cars = garage.cars.map({ $0.id })
       let titles = garage.titles.joined(separator: ", ")
       let colors = garage.colors.joined(separator: ", ")
@@ -129,17 +130,14 @@ class VCGarageViewModel: VCGarageViewModelProtocol {
       let engineModels = garage.engineModels.joined(separator: ", ")
       let numberOfCars = String("\(garage.cars.count)")
       
-      DispatchQueue.main.async { [weak self] in
-        guard let vc = self?.viewContext else { return }
-        vc.objectWillChange.send()
-        vc.cars = cars
-        vc.titles = titles
-        vc.colors = colors
-        vc.engineCCs = engineCCs
-        vc.engineModels = engineModels
-        vc.numberOfCars = numberOfCars
-      }
-    }
+      vc.objectWillChange.send()
+      vc.cars = cars
+      vc.titles = titles
+      vc.colors = colors
+      vc.engineCCs = engineCCs
+      vc.engineModels = engineModels
+      vc.numberOfCars = numberOfCars
+//    }
   }
 }
 

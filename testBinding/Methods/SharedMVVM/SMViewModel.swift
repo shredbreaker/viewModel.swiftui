@@ -49,11 +49,11 @@ class SMViewModel: ObservableObject {
     }
     
     deinit {
-        print("SMViewModel deinit \(id)")
+        customPrint("SMViewModel deinit \(id)")
     }
     
     init(store: Store) {
-        print("SMViewModel init \(id)")
+        customPrint("SMViewModel init \(id)")
         self.store = store
         garage = store.garage
         store.$garage

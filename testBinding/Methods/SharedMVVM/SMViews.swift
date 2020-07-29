@@ -22,26 +22,33 @@ struct SMGarageView: View {
     @EnvironmentObject var viewModel: SMViewModel
     
     init() {
-        print("SMGarageView init")
+        customPrint("SMGarageView init")
     }
     var body: some View {
         VStack {
-            List(viewModel.carIDs) {
+        
+          VStack(alignment: .leading) {
+            Text("Update id: \(increasedId())")
+            Text("Cars: \(viewModel.numberOfCars)")
+            Text("Titles: \(viewModel.titles)")
+            Text("Colors: \(viewModel.colors)")
+            Text("CC: \(viewModel.engineCCs)")
+            Text("Models: \(viewModel.engineModels)")
+            Button(action:{
+            }) { Text("Add car")}
+          }.padding().font(.footnote)
+          
+          ScrollView {
+            LazyVStack(alignment: .leading) {
+              ForEach(viewModel.carIDs) {
                 SMCarView(carId: $0)
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Update id: \(increasedId())")
-                Text("Cars: \(viewModel.numberOfCars)")
-                Text("Titles: \(viewModel.titles)")
-                Text("Colors: \(viewModel.colors)")
-                Text("CC: \(viewModel.engineCCs)")
-                Text("Models: \(viewModel.engineModels)")
-                Button(action:{
-                }) { Text("Add car")}
-            }.padding().font(.footnote)
+              }
+            }.padding(.all, 10)
+          }
+                      
+
         }.onAppear() {
-            print("SMGarageView Appeared")
+            customPrint("SMGarageView Appeared")
         }
     }
 }
@@ -51,7 +58,7 @@ struct SMCarView: View {
     let carId: UUID
     
     init(carId: UUID) {
-        print("SMCarView init \(carId)")
+        customPrint("SMCarView init \(carId)")
         self.carId = carId
     }
     
@@ -65,7 +72,7 @@ struct SMCarView: View {
                 SMEngineView(engineId: id)
             }
         }.onAppear() {
-            print("SMCarView Appeared \(carId)")
+            customPrint("SMCarView Appeared \(carId)")
         }
     }
 }
@@ -75,7 +82,7 @@ struct SMEngineView: View {
     var engineId: UUID
     
     init(engineId: UUID) {
-        print("SMEngineView init \(engineId)")
+        customPrint("SMEngineView init \(engineId)")
         self.engineId = engineId
     }
     
@@ -84,7 +91,7 @@ struct SMEngineView: View {
             TextField("CC", text: viewModel.engineCC(engineId))
             TextField("Model", text: viewModel.engineModel(engineId))
         }.onAppear() {
-            print("SMEngineView Appeared \(engineId)")
+            customPrint("SMEngineView Appeared \(engineId)")
         }
     }
 }

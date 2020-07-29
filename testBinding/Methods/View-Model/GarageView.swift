@@ -11,22 +11,28 @@ struct GarageView: View {
     @Binding var garage: Garage
     var body: some View {
         VStack {
-            List {
-                ForEach(garage.cars.indexed, id: \.1.id) { index, car in
-                    CarView(car: $garage.cars[index])
-                }
-            }
-            
-            VStack(alignment: .leading) {
-                Text("Titles: \(garage.titles.joined(separator: ", "))")
-                Text("Colors: \(garage.colors.joined(separator: ", "))")
-                Text("CC: \(garage.engineCCs.joined(separator: ", "))")
-                Text("Models: \(garage.engineModels.joined(separator: ", "))")
-                Button(action:{
-                    let newCar = Car(title: "Ford", color: "gray", engine: Engine(cc: "2000", model: "ABCD"))
-                    garage.cars.append(newCar)
-                }) { Text("Add car")}
-            }.padding().font(.footnote)
+          
+          VStack(alignment: .leading) {
+            Text("Titles: \(garage.titles.joined(separator: ", "))")
+            Text("Colors: \(garage.colors.joined(separator: ", "))")
+            Text("CC: \(garage.engineCCs.joined(separator: ", "))")
+            Text("Models: \(garage.engineModels.joined(separator: ", "))")
+            Button(action:{
+              let newCar = Car(title: "Ford", color: "gray", engine: Engine(cc: "2000", model: "ABCD"))
+              garage.cars.append(newCar)
+            }) { Text("Add car")}
+          }.padding().font(.footnote)
+          
+          ScrollView {
+            LazyVStack(alignment: .leading) {
+              ForEach(garage.cars.indexed, id: \.1.id) { index, car in
+                CarView(car: $garage.cars[index])
+              }
+            }.padding(.all, 10)
+          }
+          Spacer()
+
+
         }
     }
 }

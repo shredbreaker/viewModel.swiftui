@@ -21,7 +21,7 @@ struct VCCarView: View {
 //        SMEngineView(engineId: id)
 //      }
     }.onAppear() {
-      print("SMCarView Appeared")
+      customPrint("SMCarView Appeared")
     }
   }
 }
@@ -66,7 +66,7 @@ class VCCarViewModel: VCCarViewModelProtocol {
   }
   
   deinit {
-    print("VCCarViewModel deinit")
+    customPrint("VCCarViewModel deinit")
   }
   
   var subs = Set<AnyCancellable>()

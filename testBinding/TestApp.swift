@@ -9,6 +9,10 @@ import SwiftUI
 
 // Don't store State or StateObject if you won't want your view to constantly updates on any changes
 
+func customPrint(_ string: String) {
+  
+}
+
 let store = Store()
 @main
 struct TestApp: App {
