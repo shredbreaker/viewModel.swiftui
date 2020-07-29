@@ -18,10 +18,14 @@ extension Garage: Hashable {
         hasher.combine(cars)
     }
     
-    func car(id: UUID) -> Car? {
-        return cars.first(where: { $0.id == id })
-    }
-    
+  func car(id: UUID) -> Car? {
+    return cars.first(where: { $0.id == id })
+  }
+
+  func carIndex(id: UUID) -> Int? {
+    return cars.firstIndex(where: { $0.id == id })
+  }
+
     mutating func update(car: Car) {
         if let index = cars.firstIndex(where: { $0.id == car.id}) {
             cars[index] = car
