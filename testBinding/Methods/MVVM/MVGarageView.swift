@@ -16,7 +16,7 @@ extension MVViewFactory {
 
 struct MVGarageView: View {
   @ObservedObject var viewModel: ViewModel
-  
+    
   var body: some View {
     VStack {
       

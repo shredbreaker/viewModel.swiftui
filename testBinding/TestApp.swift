@@ -10,7 +10,7 @@ import SwiftUI
 // Don't store State or StateObject if you won't want your view to constantly updates on any changes
 
 func customPrint(_ string: String) {
-//  print(string)
+  print(string)
 }
 
 class AppState {
@@ -34,11 +34,29 @@ struct TestApp: App {
   @State var method: Method = .mvvm
   
   @State var addCount = 50
+  
   var body: some Scene {
     WindowGroup {
       VStack {
+        
+        Button(action:{
+          DispatchQueue.global(qos: .background).async {
+            let new = [Any](repeating:"0", count: addCount)
+              .map { _ in
+                Car(title: "Truck \(Int.random(in: 0...5))", color: "black", engine: Engine(cc: "3000", model: "DDD"))
+              }
+            DispatchQueue.main.async {
+              AppState.shared.store.add(cars: new)
+            }
+          }
+          addCount *= 2
+        }) { Text("Add \(addCount) Trucks")}.padding()
+
+        
         switch method {
-        case .sharedMVVM: SMGarageView().environmentObject(SMViewModel(store: AppState.shared.store))
+        case .sharedMVVM:
+          SMGarageView()
+            .environmentObject(SMViewModel(store: AppState.shared.store))
         case .viewFactory: ViewFactoryMethodView()
         case .mvvm: mvViewFactory.garageView()
 //          MVVMGarageView(viewModel: MVVMGarageView.ViewModel(store: store))
@@ -47,14 +65,6 @@ struct TestApp: App {
         }
         
         
-        Button(action:{
-          let new = [Any](repeating:"0", count: addCount)
-            .map { _ in
-              Car(title: "Truck", color: "black", engine: Engine(cc: "3000", model: "DDD"))
-            }
-          AppState.shared.store.garage.cars.append(contentsOf: new)
-          addCount *= 2
-        }) { Text("Add \(addCount) Trucks")}.padding()
         
         Button(action:{
           self.nextMethod()

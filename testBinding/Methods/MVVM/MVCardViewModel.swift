@@ -20,11 +20,13 @@ extension MVCardView {
     init(carId: UUID, store: Store) {
       self.store = store
       self.carId = carId
-
+      
       let index = self.store.garage.carIndex(id: carId)!
       self.title = Binding<String>(
         get: { store.garage.cars[index].title },
-        set: { store.garage.cars[index].title = $0 }
+        set: {
+          store.garage.cars[index].title = $0
+        }
       )
       
       self.color = Binding<String>(

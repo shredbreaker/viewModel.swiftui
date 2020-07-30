@@ -23,6 +23,7 @@ extension MVGarageView {
     
     init(store: Store) {
       self.store = store
+      print("MVGarageView.ViewModel init() \(UUID().uuidString)")
       
       setup(garage: store.garage)
       
@@ -36,12 +37,12 @@ extension MVGarageView {
     
     func setup(garage: Garage) {
       self.objectWillChange.send()
-      self.cars = garage.cars.map({ $0.id })
-      self.titles = garage.titles.joined(separator: ", ")
-      self.colors = garage.colors.joined(separator: ", ")
-      self.engineCCs = garage.engineCCs.joined(separator: ", ")
-      self.engineModels = garage.engineModels.joined(separator: ", ")
-      self.numberOfCars = String("\(garage.cars.count)")
+      self.cars = store.cars
+      self.titles = store.titles
+      self.colors = store.colors
+      self.engineCCs = store.engineCCs
+      self.engineModels = store.engineModels
+      self.numberOfCars = store.numberOfCars
     }
     
   }

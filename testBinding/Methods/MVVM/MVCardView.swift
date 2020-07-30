@@ -23,13 +23,13 @@ struct MVCardView: View {
       HStack {
         TextField("Title", text: viewModel.title)
         TextField("Color", text: viewModel.color)
+      }.onAppear() {
+        customPrint("SMCarView Appeared")
       }
       
       //      if let id = viewModel.engineId(for: carId) {
       //        SMEngineView(engineId: id)
       //      }
-    }.onAppear() {
-      customPrint("SMCarView Appeared")
     }
   }
 }
